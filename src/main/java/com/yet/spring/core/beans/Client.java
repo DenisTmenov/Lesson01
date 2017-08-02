@@ -54,5 +54,7 @@ public class Client {
                 "id=" + id +
                 ", fullName='" + fullName + '\'' +
                 '}';
+
+
     }
 }
