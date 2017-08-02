@@ -54,4 +54,5 @@
     <build>
         <finalName>com.yet.spring.core</finalName>
     </build>
+
 </project>
