@@ -4,6 +4,7 @@ import com.yet.spring.beans.Client;
 import com.yet.spring.beans.Event;
 import com.yet.spring.loggers.EventLogger;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class App {
@@ -18,7 +19,7 @@ public class App {
 
   public static void main(String[] args) {
 
-    ApplicationContext ctx = new ClassPathXmlApplicationContext("Spring.xml");
+    ConfigurableApplicationContext ctx = new ClassPathXmlApplicationContext("Spring.xml");
     App app =  ctx.getBean(App.class);
 
     Event event= ctx.getBean(Event.class);
@@ -27,6 +28,7 @@ public class App {
     event= ctx.getBean(Event.class);
     app.logEvent(event, "Some event for user 2");
 
+    ctx.close();
   }
 
   private void logEvent(Event event, String msg) {
