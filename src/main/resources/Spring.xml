@@ -1,37 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xsi:schemaLocation="
+         		http://www.springframework.org/schema/beans
+         		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
 
-    <bean id="app" class="com.yet.spring.core.App">
+    <bean id="client" class="com.yet.spring.beans.Client">
+        <constructor-arg index="0" value="1"/>
+        <constructor-arg value="John Smith"/>
+    </bean>
+
+    <bean id="eventLogger" class="com.yet.spring.loggers.ConsoleEventLogger"/>
+
+    <bean id="app" class="com.yet.spring.App">
         <constructor-arg ref="client"/>
         <constructor-arg ref="eventLogger"/>
     </bean>
-    <bean id="client" class="com.yet.spring.core.beans.Client">
-        <constructor-arg type="java.lang.Integer" value="1"/>
-        <constructor-arg type="java.lang.String" value="John Smith"/>
-    </bean>
-    <bean id="eventLogger" class="com.yet.spring.core.beans.ConsoleEventLogger"/>
 
-    <bean id="dateFormater" class="java.text.DateFormat" factory-method="getDateTimeInstance"/>
-
-    <bean id="event" class="com.yet.spring.core.beans.Event" scope="prototype">
-
+    <bean id="event" class="com.yet.spring.beans.Event" scope="prototype">
         <constructor-arg>
             <bean class="java.util.Date"/>
         </constructor-arg>
-
-        <constructor-arg ref="dateFormater"/>
+        <constructor-arg ref="dateFormat"/>
     </bean>
 
-    <bean id="fileEventLogger" class="com.yet.spring.core.beans.FileEventLogger" init-method="init">
-        <constructor-arg type="java.lang.String" value="testFile"/>
-    </bean>
-
-    <bean id="cacheFileLogger" class="com.yet.spring.core.beans.CacheFileLogger" destroy-method="destroy">
-        <constructor-arg type="java.lang.Integer" value="20"/>
-    </bean>
-
-
+    <bean id="dateFormat" class="java.text.DateFormat"
+          factory-method="getDateTimeInstance"/>
 
 </beans>
