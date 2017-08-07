@@ -2,7 +2,6 @@ package com.yet.spring.loggers;
 
 import com.yet.spring.beans.Event;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 

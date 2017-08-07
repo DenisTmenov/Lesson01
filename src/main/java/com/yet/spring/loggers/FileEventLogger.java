@@ -6,10 +6,10 @@ import org.apache.commons.io.FileUtils;
 import java.io.File;
 import java.io.IOException;
 
-public class FileEventLogger {
+public class FileEventLogger implements EventLogger {
 
     private String fileName;
-    protected File file;
+    private File file;
 
     public FileEventLogger(String fileName) {
         this.fileName = fileName;
@@ -17,7 +17,7 @@ public class FileEventLogger {
 
     public void logEvent(Event event) {
         try {
-            FileUtils.writeStringToFile(file, event.toString(), true);
+            FileUtils.writeStringToFile(file, event.toString() + "\r\n", true);
         } catch (IOException e) {
             throw new RuntimeException("Problem in logEvent!!!");
         }
