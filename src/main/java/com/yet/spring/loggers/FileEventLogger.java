@@ -17,7 +17,7 @@ public class FileEventLogger implements EventLogger {
 
     public void logEvent(Event event) {
         try {
-            FileUtils.writeStringToFile(file, event.toString() + "\r\n", true);
+            FileUtils.writeStringToFile(file, event.toString() + "\r\n","UTF-8", true);
         } catch (IOException e) {
             throw new RuntimeException("Problem in logEvent!!!");
         }
